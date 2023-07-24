@@ -2,16 +2,10 @@
 import type { IFlightBriefingListItem } from './model'
 import { computed } from 'vue'
 import { groupBy } from '@/infrastructure/utils'
+import { HIGHLIGHT_COLORS, HIGHLIGHT_CODES } from './constants'
 
 interface Props {
   data?: Array<IFlightBriefingListItem>
-}
-
-const HIGHLIGHT_CODES = ['BKN', 'FEW', 'SCT']
-
-const HIGHLIGHT_COLORS = {
-  INFO: 'text-blue-600',
-  DANGER: 'text-rose-600'
 }
 
 const props = defineProps<Props>()
@@ -32,16 +26,12 @@ const listItems = computed(() => {
           highlightClass = numericValue > 30 ? HIGHLIGHT_COLORS.DANGER : HIGHLIGHT_COLORS.INFO
         }
       })
-      return text.trim()
-        ? `<div class="inline-block mr-1 ${highlightClass}">${text.trim()}</div>`
-        : ''
+      return text.trim() ? `<div class="inline-block mr-1 ${highlightClass}">${text.trim()}</div>` : ''
     })
     const text = convertedText.join('')
     return { ...item, text }
   })
-  const groupedData = parsedData
-    ? groupBy(parsedData, ({ stationId }) => stationId, 'stationId')
-    : {}
+  const groupedData = parsedData ? groupBy(parsedData, ({ stationId }) => stationId, 'stationId') : {}
   return groupedData
 })
 </script>

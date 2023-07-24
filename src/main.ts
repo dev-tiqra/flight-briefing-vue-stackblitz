@@ -7,7 +7,7 @@ import { LOCALE } from './constants'
 
 const i18n = createI18n({
   locale: LOCALE.EN,
-  fallbackLocale: LOCALE.SK
+  fallbackLocale: LOCALE.SK,
 })
 
 createApp(App).use(i18n).mount('#app')

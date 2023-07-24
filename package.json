@@ -1,10 +1,15 @@
 {
-  "name": "vite-js",
-  "version": "0.0.0",
+  "name": "flight-briefing-vue",
+  "version": "0.0.1",
+  "author": "krajcot",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "run-p type-check build-only",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
   },
   "devDependencies": {
     "@intlify/unplugin-vue-i18n": "^0.12.2",
@@ -28,6 +33,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
+    "uuid": "^9.0.0",
     "vue": "^3.3.4",
     "vue-i18n": "^9.3.0-beta.24"
   }
